@@ -1,0 +1,29 @@
+{
+  "name": "plaarket-marketplace",
+  "version": "1.0.0",
+  "description": "Modular marketplace platform for organic products (B2B and B2C)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd backend && npm run dev",
+    "client:dev": "cd frontend && npm run dev",
+    "build": "npm run client:build && npm run server:build",
+    "client:build": "cd frontend && npm run build",
+    "server:build": "cd backend && npm run build",
+    "start": "cd backend && npm start",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "lint": "npm run server:lint && npm run client:lint",
+    "server:lint": "cd backend && npm run lint",
+    "client:lint": "cd frontend && npm run lint"
+  },
+  "keywords": ["marketplace", "organic", "b2b", "b2c", "modular"],
+  "author": "Plaarket Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}

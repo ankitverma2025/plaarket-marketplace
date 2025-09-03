@@ -6,7 +6,7 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'hi', 'bn', 'ta', 'te', 'mr', 'gu', 'kn', 'ml', 'pa'],
     defaultLocale: 'en',
-    localeDetection: true,
+    localeDetection: false,
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',

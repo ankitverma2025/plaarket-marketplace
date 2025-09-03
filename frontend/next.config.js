@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'standalone', // For Docker deployment
+  // output: 'standalone', // Commented out for Railway deployment
   i18n: {
     locales: ['en', 'hi', 'bn', 'ta', 'te', 'mr', 'gu', 'kn', 'ml', 'pa'],
     defaultLocale: 'en',

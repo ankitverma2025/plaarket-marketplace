@@ -13,12 +13,14 @@ import {
 import { useAuthStore } from '@/store/authStore';
 import { productsApi } from '@/shared/utils/api';
 import { Product } from '@/shared/types';
+import { useTranslation } from '@/utils/translations';
 
 export default function Home() {
   const router = useRouter();
   const { isAuthenticated, user } = useAuthStore();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
@@ -61,98 +63,48 @@ export default function Home() {
   const features = [
     {
       icon: ShieldCheckIcon,
-      title: 'Verified Organic Products',
-      description: 'All products are verified for organic certification and quality standards.',
+      titleKey: 'home.features.verified.title',
+      descriptionKey: 'home.features.verified.description',
     },
     {
       icon: ClipboardDocumentListIcon,
-      title: 'B2B RFQ System',
-      description: 'Request quotes for bulk orders and connect directly with suppliers.',
+      titleKey: 'home.features.rfq.title',
+      descriptionKey: 'home.features.rfq.description',
     },
     {
       icon: ShoppingBagIcon,
-      title: 'Easy B2C Shopping',
-      description: 'Simple and secure shopping experience for individual consumers.',
+      titleKey: 'home.features.shopping.title',
+      descriptionKey: 'home.features.shopping.description',
     },
     {
       icon: TruckIcon,
-      title: 'Direct from Farmers',
-      description: 'Connect directly with organic farmers and verified suppliers.',
+      titleKey: 'home.features.farmers.title',
+      descriptionKey: 'home.features.farmers.description',
     },
     {
       icon: HeartIcon,
-      title: 'Sustainable Practices',
-      description: 'Supporting environmentally friendly and sustainable farming practices.',
+      titleKey: 'home.features.sustainable.title',
+      descriptionKey: 'home.features.sustainable.description',
     },
     {
       icon: SparklesIcon,
-      title: 'Quality Assured',
-      description: 'Rigorous quality checks and certification verification process.',
+      titleKey: 'home.features.quality.title',
+      descriptionKey: 'home.features.quality.description',
     },
   ];
 
   return (
     <>
       <Head>
-        <title>Plaarket - Organic Products Marketplace</title>
+        <title>{t('home.title')}</title>
         <meta
           name="description"
-          content="Your trusted marketplace for organic products. Connect with verified organic farmers, suppliers, and brands for both B2B and B2C transactions."
+          content={t('home.description')}
         />
-      </Head>
+              </Head>
 
-      <div className="min-h-screen bg-white">
-        {/* Navigation */}
-        <nav className="bg-white border-b border-neutral-200">
-          <div className="container-responsive">
-            <div className="flex justify-between items-center h-16">
-              <div className="flex items-center">
-                <Link href="/" className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">P</span>
-                  </div>
-                  <span className="font-heading font-bold text-xl text-neutral-900">
-                    Plaarket
-                  </span>
-                </Link>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <Link
-                  href="/products"
-                  className="text-neutral-600 hover:text-neutral-900 transition-colors"
-                >
-                  Products
-                </Link>
-                <Link
-                  href="/sellers"
-                  className="text-neutral-600 hover:text-neutral-900 transition-colors"
-                >
-                  Sellers
-                </Link>
-                {isAuthenticated ? (
-                  <Link
-                    href={`/dashboard/${user?.role?.toLowerCase()}`}
-                    className="btn btn-primary"
-                  >
-                    Dashboard
-                  </Link>
-                ) : (
-                  <div className="flex items-center space-x-2">
-                    <Link href="/auth/login" className="btn btn-ghost">
-                      Sign In
-                    </Link>
-                    <Link href="/auth/register" className="btn btn-primary">
-                      Get Started
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {/* Hero Section */}
+        <div className="min-h-screen bg-white">
+          {/* Hero Section */}
         <section className="py-20 lg:py-28 bg-gradient-to-b from-primary-50 to-white">
           <div className="container-responsive">
             <div className="text-center max-w-4xl mx-auto">
@@ -162,15 +114,14 @@ export default function Home() {
                 Marketplace
               </h1>
               <p className="text-xl text-neutral-600 mb-8 text-pretty max-w-2xl mx-auto">
-                Connect with verified organic farmers, suppliers, and brands. 
-                Whether you're buying for your family or business, we've got you covered.
+                {t('home.hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onClick={handleGetStarted} className="btn btn-primary btn-lg">
-                  Get Started Today
+                  {t('home.hero.getStarted')}
                 </button>
                 <Link href="/products" className="btn btn-outline btn-lg">
-                  Browse Products
+                  {t('home.hero.learnMore')}
                 </Link>
               </div>
             </div>
@@ -199,9 +150,9 @@ export default function Home() {
                     <feature.icon className="w-6 h-6 text-primary-600" />
                   </div>
                   <h3 className="text-lg font-heading font-semibold text-neutral-900 mb-2">
-                    {feature.title}
+                    {t(feature.titleKey)}
                   </h3>
-                  <p className="text-neutral-600">{feature.description}</p>
+                  <p className="text-neutral-600">{t(feature.descriptionKey)}</p>
                 </div>
               ))}
             </div>
